@@ -398,55 +398,49 @@
 ## Documentation
 
 ### General considerations for API module parsing
-- Use docblocks starting with `/**` for documentation.
-- Documentation must be directly above the item being documented, with no blank line in between.
-- The API module recognizes files with specific PHP extensions.
+- Documentation must be in a docblock format starting with `/**`.
+- Only files with specific extensions (.php, .module, .inc, .install, .engine, .theme, .profile, .test) are treated as PHP.
+- The first paragraph of a docblock is the summary.
 
 ### General documentation
-- All documentation must form proper sentences with correct grammar and punctuation.
-- Use a space between the comment character and the first letter of the sentence.
-- Document the current version of the code, not past or future changes.
-- Use US English spelling in comments and variable names.
-- All caps are reserved for constants in comments.
-- Lines containing comments must wrap as close to 80 characters as possible.
-- Every function, constant, class, interface, and file must be documented.
+- All documentation should use proper grammar and punctuation.
+- Document the current version of the code.
+- Comments and variable names must be in English, using US English spelling.
+- All functions, constants, classes, interfaces, and files must be documented.
 - Summaries must be under 80 characters, start with a capital letter, and end with a period.
 
 ### Classes and namespaces
-- Document all classes and their methods, including private methods.
-- Use third person verbs to start summaries for classes, interfaces, or methods.
-- Use fully-qualified namespaces when documenting classes and interfaces.
+- All classes and methods must be documented, including private methods.
+- Use fully-qualified namespaces in documentation.
 
 ### Data types in documentation
-- Prefix types with the fully-qualified namespace for classes and interfaces.
-- Spell types correctly: array, bool, true, false, int, null, object.
+- Use interface names or the most general class possible in type documentation.
+- Prefix types with the fully-qualified namespace.
 
 ### Functions
-- Document each parameter with a `@param` tag.
-- Document return values with a `@return` tag if applicable.
-- Summaries for most functions must start with a third person singular present tense verb.
+- Each parameter must be documented with a `@param` tag.
+- A `@return` tag must be used if a function has a return value.
+- Summaries for functions must start with a third person singular present tense verb.
 
 ### In-line code comments
-- Use comments to clarify complex code sections.
-- Comments should be on a separate line immediately before the referenced code.
+- Comments should be on a separate line immediately before the code they reference.
+- Use `//` for comments; avoid `/* */` within functions.
+
+### Lists in documentation
+- Lists must be preceded by a line ending in a colon.
+- Indicate optional items with `(optional)`.
 
 ### Order of documentation sections
-- Follow the specified order for documentation sections in docblocks: summary, additional explanation, `@var`, `@param`, `@return`, `@throws`, `@ingroup`, `@deprecated`, `@see`, `@todo`.
-
-### PHPUnit and Simpletest tests
-- Follow class standards for PHPUnit and Simpletest, including specific tags like `@group`, `@covers`, and `@coversDefaultClass`.
+- The order of sections in docblocks must be: summary, additional explanation, `@var`, `@param`, `@return`, `@throws`, `@ingroup`, `@deprecated`, `@see`, `@todo`, `@Plugin`.
 
 ### @deprecated
-- Use the `@deprecated` tag to indicate deprecated functionality, including version strings for deprecation and removal.
-
-### @see
-- Use the `@see` tag for references, placing each reference on its own line.
+- Use the `@deprecated` tag to indicate deprecated functionality, including version information.
 
 ### @throws
-- Document exceptions thrown by functions or methods using the `@throws` tag.
+- Document exceptions thrown by functions or methods with the `@throws` tag.
 
 ### @todo
-- Use the `@todo` tag for notes on future improvements or issues to address.
+- Use the `@todo` tag for notes on future improvements or changes needed.
 
 
 ## Documentation Examples
