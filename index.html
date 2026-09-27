@@ -676,40 +676,35 @@
 - Put a space between the (type) and the $variable in a cast.
 
 ### Chaining
-- Methods should return $this for chainable methods.
-- Indent chained method calls with 2 spaces if spanning multiple lines.
+- Methods should return $this for chainable methods where no other return value is logical.
+- Indent chained method calls with 2 spaces if they span multiple lines.
 
 ### Class Constructor Calls
 - Always include parentheses when calling class constructors, even with no arguments.
 
 ### Control Structures
 - Use one space between the control keyword and the opening parenthesis.
-- Always use curly braces for control structures.
-- Use "elseif" instead of "else if".
+- Always use curly braces for control structures, even if optional.
+- For switch statements, indent cases and default actions properly.
 
 ### Declaring Classes
-- One class or interface per file, named after the class.
+- Define one class or interface per file, named after the class/interface.
 
 ### Function Calls
-- No spaces between the function name and the opening parenthesis; spaces between commas and parameters.
+- Call functions with no spaces between the function name and the opening parenthesis.
 
 ### Function Declarations
-- Split argument lists across multiple lines with one argument per line and a trailing comma on the last argument.
+- Split argument lists across multiple lines with one argument per line and a trailing comma.
 
 ### Indenting and Whitespace
 - Use an indent of 2 spaces, with no tabs.
 - Lines should have no trailing whitespace.
-- All text files should end in a single newline.
-
-### Instantiation
-- Use factory functions to create classes instead of direct instantiation.
-
-### Line Length and Wrapping
-- Keep lines of code under 80 characters, except for specific cases.
+- All text files should end with a single newline.
 
 ### Naming Conventions
 - Functions and variables should use lowercase with underscores; functions should have a module prefix.
 - Constants should be all-uppercase with underscores; module-defined constants should be prefixed by the module name.
+- Classes and interfaces should use UpperCamel naming; methods and properties should use lowerCamel naming.
 
 ### Operators
 - All binary operators should have a space before and after.
@@ -717,82 +712,64 @@
 - Use the short ternary operator `?:` and the null coalescing operator `??` for readability.
 
 ### Parameter and Return Type Hinting
-- Use type hints for all new functions and methods.
+- Use parameter and return type hints wherever possible for new functions and methods.
 
 ### PHP Code Tags
 - Always use `<?php ?>` to delimit PHP code.
 
 ### Semicolons
-- Require semicolons at the end of all lines, including one-line blocks.
+- Require semicolons at the end of all lines, including one-line PHP blocks.
 
 ### Strict Type Declaration
-- Place the declare statement on a new line after the opening PHP tag.
+- Place the declare statement on a new line after the opening PHP tag, surrounded by empty newlines.
 
 ### String Concatenations
-- Use a space between the dot and concatenated parts.
+- Use a space between the dot and the concatenated parts.
 
 ### Use of Interfaces
 - Use separate interface definitions for flexibility in extending code.
 
 ### Visibility
-- Declare visibility on all methods and properties; do not use underscores for visibility indication.
-
-### abstract, final, and static
-- Place `abstract` and `final` declarations before visibility; place `static` after visibility.
+- Declare visibility on all methods and properties; do not use an underscore prefix for method names.
 
 
 ## Documentation
 
 ### General considerations for API module parsing
-- Use docblocks starting with `/**` for documentation.
-- Documentation must be directly above the item being documented, with no blank line in between.
-- The API module recognizes files with specific PHP extensions.
+- Documentation must be in a docblock format starting with `/**`.
+- Only files with specific extensions (.php, .module, .inc, .install, .engine, .theme, .profile, .test) are parsed as PHP.
+- A docblock must appear directly before the item being documented, with no blank line in between.
 
 ### General documentation
-- All documentation must form proper sentences with correct grammar and punctuation.
-- Use a space between the comment character and the first letter of the sentence.
-- Document the current version of the code, not past or future changes.
-- Use US English spelling in comments and variable names.
-- All caps are reserved for constants in comments.
-- Lines containing comments must wrap as close to 80 characters as possible.
-- Every function, constant, class, interface, and file must be documented.
-- Summaries must be under 80 characters, start with a capital letter, and end with a period.
+- All documentation must use proper grammar and punctuation.
+- Document the current version of code, not past or future changes.
+- Comments and variable names must be in English, using US English spelling.
+- All summaries must be under 80 characters, start with a capital letter, and end with a period.
+- Every function, constant, class, interface, and file must be documented, including private members.
 
 ### Classes and namespaces
-- Document all classes and their methods, including private methods.
-- Use third person verbs to start summaries for classes, interfaces, or methods.
-- Use fully-qualified namespaces when documenting classes and interfaces.
+- All classes and methods must be documented, including private methods.
+- Use a third person verb to start the summary of a class, interface, or method.
+- Class and interface names must always include the fully-qualified namespace in documentation.
 
 ### Data types in documentation
-- Prefix types with the fully-qualified namespace for classes and interfaces.
-- Spell types correctly: array, bool, true, false, int, null, object.
+- Always prefix types with the fully-qualified namespace for classes and interfaces.
+- Use specific terms for data types: array, bool, true, false, int, null, object.
 
 ### Functions
-- Document each parameter with a `@param` tag.
-- Document return values with a `@return` tag if applicable.
-- Summaries for most functions must start with a third person singular present tense verb.
+- Each parameter of a function must be documented with a `@param` tag.
+- A `@return` tag must be used if a function has a return value.
+- Summary lines must start with a third person singular present tense verb.
 
 ### In-line code comments
-- Use comments to clarify complex code sections.
-- Comments should be on a separate line immediately before the referenced code.
+- Comments should be on a separate line immediately before the code they reference.
+- Use C style comments (`//`) for inline comments.
 
 ### Order of documentation sections
-- Follow the specified order for documentation sections in docblocks: summary, additional explanation, `@var`, `@param`, `@return`, `@throws`, `@ingroup`, `@deprecated`, `@see`, `@todo`.
+- The order of sections in a docblock should be: summary, additional explanation, @var, @param, @return, @throws, @ingroup, @deprecated, @see, @todo, @Plugin.
 
-### PHPUnit and Simpletest tests
-- Follow class standards for PHPUnit and Simpletest, including specific tags like `@group`, `@covers`, and `@coversDefaultClass`.
-
-### @deprecated
-- Use the `@deprecated` tag to indicate deprecated functionality, including version strings for deprecation and removal.
-
-### @see
-- Use the `@see` tag for references, placing each reference on its own line.
-
-### @throws
-- Document exceptions thrown by functions or methods using the `@throws` tag.
-
-### @todo
-- Use the `@todo` tag for notes on future improvements or issues to address.
+### PHPUnit tests
+- PHPUnit classes should follow Class standards but include specific tags like @group, @covers, and @coversDefaultClass.
 
 
 ## Documentation Examples
@@ -854,19 +831,22 @@
 ## Namespaces
 
 ### "use"-ing classes
-* Classes and interfaces with a backslash `\` must not use their fully-qualified name; use a `use` statement instead.
-* Classes and interfaces without a backslash must be fully qualified when used in a namespaced file.
-* In files without a namespace, use statements are required for classes in any namespace other than global.
+* Classes and interfaces with a backslash `\` in their fully-qualified name must not use their fully-qualified name inside the code; use a `use` statement instead.
+* Classes and interfaces without a backslash must be fully qualified; do not `use` global classes.
+* In files without a namespace, classes in any namespace must be specified with a "use" statement.
 * Do not include a leading `\` when importing a class with "use".
-* Use full class names including namespace in strings, escaping the namespace separator in double-quoted strings.
+* Specify a class name in a string using its full name including namespace, escaping the namespace separator in double-quoted strings.
 * Specify a single class per use statement.
 * API documentation should use full class names; if a class is used multiple times, it must be "use"ed before using short names.
 
 ### Class aliasing
-* Alias classes only to avoid name collisions, prefixing with the next higher portion of the namespace if necessary.
+* Classes should only be aliased to avoid name collisions; alias both colliding classes by prefixing the next higher portion of the namespace.
+
+### Order of import
+* There is no specific rule for ordering multiple classes to 'use'; prioritize code readability.
 
 ### Modules
-* Modules creating classes must place their code inside a custom namespace beginning with `Drupal\module_name\`.
+* Modules creating classes must place their code inside a custom namespace following the convention: Drupal\module_name\\...
 
 
 ## Naming Services
@@ -883,9 +863,11 @@
 
 ## Psr4
 ### Namespace and Directory Structure
-- Each module must have a namespace that corresponds to its module name.
-- The module's namespace is mapped to the `./src/` folder in the module directory.
-- Each part of a namespaced class name maps directly to the directory and file structure in the `./src/` folder.
+- Each module must have a namespace corresponding to its module name.
+- The module's namespace maps to the `./src/` folder in the module directory.
+- Each part of a namespaced class name directly maps to the directory and file structure in the `./src/` folder.
+- The namespace of all components begins with `Drupal\`.
+- The first parts of a namespaced class name indicate the base namespace that maps to a registered base directory.
 - Each PHP class, interface, or trait must reside in a separate PHP file.
 
 
